@@ -2,54 +2,87 @@ import { LitElement,html,css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 class DmBatalla  extends LitElement {
+  static get styles(){
+    return [css`
+    :host{ 
+      display: flex;
+      flex-direction:row;
+      border:solid;    
+    }
+    #container-pokemones{
+      border:solid;
+      width:50%
+    }
+    #container-batallas{
+      border:solid;
+      width:50%
+    }
+    
+    `]
+  }
   static get properties(){
     return{
       response: { type: Object },
       nombre:{type:String},
+      nombre1:{type:String},
+      nombre2:{type:String},
       vida:{type:String},
       ataque:{type:String},
       urlpokemon:{type:String},
+      urlpokemon1:{type:String},
+      urlpokemon2:{type:String},
       dataFilms: { type: Array },
       datos:{type:Array},
       datospokemones:{type:Array},
+      checkbox1:{type:String}
     }
   }
   constructor() {
     super();
     this.response = [];
     this.nombre='';
+    this.nombre1='';
+    this.nombre2='';
     this.vida='';
     this.ataque='';
     this.urlpokemon='';
+    this.urlpokemon1='';
+    this.urlpokemon2='';
     this.dataFilms = [];
     this.datos=[];
     this.datospokemones=[];
+    this.checkbox1='false';
   }
 firstUpdated(){
-  // fetch("https://swapi.dev/api/people/")
-  // fetch(`https://pokeapi.co/api/v2/pokemon/${this.name}?limit=4`)
-  // .then((r) => r.json())
-  // .then((r) => {
-  //   this.response = r.results;
-  // this.dataFilms = [...response.results]);
-  //   this.response.forEach(element => {
-  //     console.log(element.name) 
-  //   });
-      
-  // });
     this._handleApi().then(response => this._datos(response));
 }
 connectedCallback() {
   super.connectedCallback();
-  
-  // this.addEventListener('on-submit-search', this._handleSearch);
-  // eslint-disable-next-line no-return-assign
-  //  this._handleApi().then(response => console.log(response));
-    this._handleApi().then(response => this.dataFilms = [...response.results]);
+  this.addEventListener('pokemon-seleccionado-batalla', this._handleSearch);
+  this._handleApi().then(response => this.dataFilms = [...response.results]);
   this._datos(this.dataFilms);
 }
+_handleSearch({ detail }) {
+  
+  const pokemon = JSON.stringify(detail);
+  this.datos.push([JSON.parse(pokemon)]);
+  
+  if(this.datos.length==2){
+    this.datos.map(film=>(console.log(film[0].nombre)))
+    // this.datos.forEach(element => {
+    //   console.log(element)
+    // })
+  //   this.nombre1=this.datos[0].nombre;
+  // this.nombre2=this.datos[1].nombre;
+  // this.urlpokemon1=this.datos[0].url;
+  // this.urlpokemonq=this.datos[1].url;
+  }
+ 
+this.datos[1]?this.checkbox1=true:'';
+
+}
 async _handleApi() {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=4`);
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=4&offset=0`);
   return await response.json();
 }
 async _datos(data=''){
@@ -59,48 +92,49 @@ async _datos(data=''){
     fetch(`https://pokeapi.co/api/v2/pokemon/${element.name}?limit=4`)
    .then((response)=> response.json())
    .then((response)=>this._sendDatos(response))
-  //  .then((response)=>{this.datospokemones= [...response]})
+    } )
+    :'';
 
-  // )
-    } ):'';
-  // console.log(this.datospokemones,'a')
-  // console.log(this.datospokemones[0])
 }
 async _sendDatos(data)  {
-  // console.log(data.sprites.front_default)
+  
   this.nombre=data.name;
   this.vida=data.stats[0].base_stat;
   this.ataque=data.stats[1].base_stat;
   this.urlpokemon=data.sprites.front_default;
   const jsonFromMap = JSON.stringify(data);
-  this.datospokemones=JSON.parse(jsonFromMap);
-// {"user1":"John","user2":"Kate","user3":"Peter"}
-console.log(this.datospokemones.stats);
-  // const arr = Object.entries(data);
-
-  // console.log(arr);
+  this.datospokemones.push([JSON.parse(jsonFromMap)]);
 
 }
-  static get styles(){
-    return [css`
-    :host{ display: flex }`]
-  }
+ 
   render() {
-  //  this.datospokemones?
-  //  datospokemones.forEach(element => {
-  //  }):'';
-  // console.log(this.datospokemones)
-    // const { response } = this;
-  //  this.name= this.dataFilms[3].name;
+    // console.log(this.nombre1)
     return html`
-    ${this.dataFilms ? (
+    <div id="container-pokemones">
+     ${this.dataFilms ? this.datospokemones.map(film => (
               html `
-      <listapokemon-front nombre=${this.nombre} vida=${this.vida} ataque=${this.ataque} urlpokemon=${this.urlpokemon}>
-    </listapokemon-front>
-    `
-            ) : ''}
-    <batalla-front></batalla-front>
-    <nuevabatalla-front></nuevabatalla-front>
+               <listapokemon-front 
+               nombre=${film[0].name} 
+               ataque=${film[0].stats[1].base_stat} 
+               vida=${film[0].stats[0].base_stat} 
+               urlpokemon=${film[0].sprites.front_default}
+               checkboxpokemon=${this.checkbox1}
+              ></listapokemon-front>
+              `
+            )) : ''}
+      </div>
+      <div id="container-batallas">
+     
+      ${this.datos!='' ?this.datos.map(film=> html`
+        <batalla-front 
+        nombre1=${this.nombre1}
+        nombre2=${this.nombre1}
+        urlpokemon1=${this.urlpokemon1.url} 
+        urlpokemon2=${this.urlpokemon2.url}
+        >
+        </batalla-front>`):html` <batalla-front></batalla-front>`}
+        <nuevabatalla-front></nuevabatalla-front>
+      </div>
     `;
   }
   

@@ -7,7 +7,7 @@ class NuevaBatallaFront  extends LitElement {
   }
   render() {
     return html`
-      <div>
+      <div id="contenido-seleccion">
         <div id="container-batalla-ganador" class="">
             <h3>GANADOR</h3>
               <div id="container-ganador-img-p"> 
