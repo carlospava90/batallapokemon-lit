@@ -3,7 +3,7 @@ import {css} from 'lit-element';
 export const batallastyles = css `
 #container-pokemones-seleccionados{
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
 }
 #contenido-pokemones{
     display:flex;

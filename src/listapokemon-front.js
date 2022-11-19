@@ -8,9 +8,8 @@ class ListaPokemonFront  extends LitElement {
       vida:{type: String},
       urlpokemon:{type: String},
       ataque:{type: String},
-      checkboxpokemon:{type: String},
-      disabled:{ type: Boolean },
-      checked: { type: Boolean }
+      checkboxpokemon:{type:Boolean},
+      checked:{type:Boolean},
     };
   }
   static get styles(){
@@ -23,18 +22,17 @@ class ListaPokemonFront  extends LitElement {
     this.urlpokemon='';
     this.ataque='';
     this.checkboxpokemon=false;
-    this.checked = false;
-    this.disabled=false;
-    // this.addEventListener('ApiData',({detail})=>{console.log(detail)});
+    this.checked=false;
+
   }
 
   render() {
-  this.checkboxpokemon=='true'?this.disabled=true:'';
+    console.log(this.checkboxpokemon)
     return html`
      
       <div id="listapokemon">
         <div>
-        <input @click=${this.handleClick} type="checkbox" ?checked=${this.checked} ?disabled=${this.disabled}>
+        <input @click=${this.handleClick} type="checkbox" ?checked=${this.checked} ?disabled=${this.checkboxpokemon}>
         <img alt="pokemon" src="${this.urlpokemon}">
         </div>
         <div>
