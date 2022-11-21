@@ -2,92 +2,90 @@ import {css} from 'lit-element';
 export const batallastyles= css`
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+img{
+    width:150px;
+    height:150px;
 }
 #container-pokemones-seleccionados{
-    /* border:ridge; */
-    border-radius:1em;
-    /* color:blue; */
+    border:ridge;
+    padding:5px;
     display:flex;
-    flex-wrap:wrap;
+  
     flex-direction:column;
     justify-content:center;
     
 }
 #contenido-pokemones{
-    /* padding:1em; */
-    /* margin:1em; */
     display:flex;
     flex-direction:row;
     justify-content:space-around; 
-
     width:100%;
-    height:80%;
-    /* flex-wrap:wrap; */
-    /* border:solid; */
-    /* color:yellow; */
+    height:70%;
+
 }
 
 #seleccion-pokemon-uno{
     display:flex;
     flex-direction:column;
     justify-content:center;
-    /* padding:1em; */
-    border:ridge;
-    width:45%;
+    align-items:center;
+    border-radius:1em;
+    width:48%;
+    height:100%;
 
 }
 #container-img-seleccion-batalla-pokemon1{
-    border:ridge;
     display:flex;
+    margin:5px;
     justify-content:center;
-    width:100%;
-    height:80%;
+    border:ridge;
+    width:65%;
+    height:60%;
 }
 #container-p-seleccion-pokemon1{
-    /* border:solid; */
-    height:20%;
+    width:60%;
 }
 
 #img-seleccion-batalla-pokemon1{
-    /* height:100px; */
-
     height:100%; 
     width:100%
 }
 #p-seleccion-pokemon1{
-    /* border:solid; */
-    width:80%;
-    height:20%;
+    text-align:center;
+    width:100%;
 }
 #seleccion-pokemon-dos{
     display:flex;
     flex-direction:column;
     justify-content:center;
-    border:ridge;
-    width:45%;
+    align-items:center;
+    /* border:ridge; */
+    border-radius:1em;
+    width:48%;
+    height:100%;
 }
 #container-img-seleccion-batalla-pokemon2{
-    border:ridge;
     display:flex;
+    margin:5px;
     justify-content:center;
-    width:100%;
-    height:80%;
+    border:ridge;
+    width:65%;
+    height:60%;
 }
 #container-p-seleccion-pokemon2{
-    /* padding:1em; */
-    /* border:solid; */
-    height:20%;
+    width:60%;
 }
 
 #img-seleccion-batalla-pokemon2{
-    /* border:solid; */
-    height:100%;
+    height:100%; 
     width:100%
 }
 #p-seleccion-pokemon2{
-    /* border:solid; */
-    width:80%;
-    height:100%;
+    text-align:center;
+    width:100%;
 }
 
 #container-boton-batalla{
@@ -99,7 +97,6 @@ export const batallastyles= css`
 }
 
 #boton-batalla-empezar{
-    
     width:95%
 }
 `;
