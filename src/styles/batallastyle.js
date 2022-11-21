@@ -23,7 +23,7 @@ export const batallastyles= css`
     width:100%;
     height:80%;
     /* flex-wrap:wrap; */
-    border:solid;
+    /* border:solid; */
     /* color:yellow; */
 }
 
@@ -49,9 +49,10 @@ export const batallastyles= css`
 }
 
 #img-seleccion-batalla-pokemon1{
+    /* height:100px; */
 
-    height:100%;
-    /* width:100% */
+    height:100%; 
+    width:100%
 }
 #p-seleccion-pokemon1{
     /* border:solid; */
@@ -81,7 +82,7 @@ export const batallastyles= css`
 #img-seleccion-batalla-pokemon2{
     /* border:solid; */
     height:100%;
-    /* width:100% */
+    width:100%
 }
 #p-seleccion-pokemon2{
     /* border:solid; */
@@ -90,6 +91,7 @@ export const batallastyles= css`
 }
 
 #container-boton-batalla{
+    padding:1em;
     display:flex;
     justify-content:center;
     height:20%;

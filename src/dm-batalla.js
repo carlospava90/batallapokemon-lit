@@ -79,7 +79,6 @@ super.disconnectedCallback();
 }
 
 _handleSearch({ detail }) {
-
   const pokemon = JSON.stringify(detail);
   this.datos.push([JSON.parse(pokemon)]);
   this.nombre1=this.datos[0][0].nombre;
@@ -90,6 +89,7 @@ _handleSearch({ detail }) {
 }
 
 _batallaPokemon(){
+  this.pokemonganadornombre='';
   this.buttonbatallachecked=true;
   this.buttonnuevabatallachecked=false;
   let ataque = Math.round(Math.random() * 1);
@@ -102,7 +102,9 @@ _batallaPokemon(){
 }
 
 _nuevabatalla(){
-  this.contenidoganadores.push(this.pokemonganadornombre);
+  let ganador=this.pokemonganadornombre;
+  this.pokemonganadornombre='';
+  this.contenidoganadores.push(ganador);
   this.checkbox1=false;
   this.buttonnuevabatallachecked=true;
   this.buttonbatallachecked=true;
@@ -115,6 +117,8 @@ _nuevabatalla(){
   this._handleApi(this.url).then(response => this._datos(response));
 }
 async _handleApi(url) {
+  this.pokemonganadornombre='';
+
   const response = await fetch(`${url}`);
   return await response.json();
 }

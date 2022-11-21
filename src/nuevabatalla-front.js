@@ -41,8 +41,10 @@ class NuevaBatallaFront  extends LitElement {
         </div>
       </div>
     `;
+    
   }
   nuevaBatallaPokemonClick(){
+ 
     const event=new CustomEvent('nueva-batalla-pokemon',{
         detail:{
             ganador:2,

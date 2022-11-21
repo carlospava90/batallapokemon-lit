@@ -34,11 +34,17 @@ export const dmbatallastyle= css`
   height:100%;
   width:45%
 }
-#container-batallafront{
-  /* border:solid; */
+/* #container-batallafront{
 }
 #container-nuevabatallafront{
-  /* border:solid; */
+} */
+@media (max-width: 600px) {
+  #container-pokemones {
+    width: 100%;
+  }
+  #container-batallas {
+    margin:1em;
+    width: 100%;
+  }
 }
-
 `;
