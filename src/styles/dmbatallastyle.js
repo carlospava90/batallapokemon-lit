@@ -4,12 +4,18 @@ export const dmbatallastyle= css`
 *{
     box-sizing:border-box;
 }
-
+img{
+  width:150px;
+  height:150px;
+}
  h1{
     font-family:Impact;
     text-align:center;
  }
  #container{
+  border:ridge;
+ }
+ #container-contenido{
   align-content:center;
   display:flex;
   flex-flow:row wrap;
@@ -19,26 +25,28 @@ export const dmbatallastyle= css`
  }
 
 #container-pokemones{
-   border:1px solid gray;
+  display:flex;
+  flex-direction:column;
+   border:solid gray;
    border-radius:1em; 
    height:100%;
-   /* height:600px; */
-   width:45%
+   width:48%
 }
+#container-listapokemon{
+  display:flex;
+  color:green;
+  flex-direction:column;
+}
+
 #container-batallas{
   display:flex;
-  /* flex-wrap:wrap; */
   flex-direction:column;
-  /* border:solid; */
   border-radius:1em; 
   height:100%;
   width:45%
 }
-/* #container-batallafront{
-}
-#container-nuevabatallafront{
-} */
-@media (max-width: 600px) {
+
+@media (max-width: 800px) {
   #container-pokemones {
     width: 100%;
   }

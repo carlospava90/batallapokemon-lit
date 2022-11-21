@@ -1,54 +1,66 @@
 import {css} from 'lit-element';
 
 export const nuevabatallastyles=css`
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 #contenido-seleccion{
+   margin:8px;
    display:flex;
    flex-direction:column;
-   /* color:red; */
-   border:ridge;
-   height:50%;
+   height:100%; 
    width:100%
 
 }
 #container-batalla-ganador{
-
-   height:80%;
+   border:ridge;
+   display:flex;
+   flex-direction:column;
+   height:70%;
    width:100%;
-
 }
 #container-titulo{
+   margin:5px;
    display:flex;
    justify-content:center;
    height:20%;
 }
 #container-ganador-img-p{
    display:flex;
+   flex-direction:row;
   justify-content:space-around;
-   height:80%;
+   width:100%;
+   height:100%;
 }
 #container-img-ganador{
-   display:flex;
-   flex-wrap:wrap;
-   justify-content:center;
+   margin:5px;
    border:ridge;
+   display:flex;
    border-radius:1em;
-   width:70%;
+   width:35%;
+   height:30%;
 }
 #img-ganador{
 width:100%;
+height:100%;
 }
 #container-p-ganador{
    display:flex;
    align-items:center;
+   width:60%;
 }
 #p-ganador{
+   width:100%;
    text-align:center;
 }
 #container-boton-batalla-nueva{
-   padding:1em;
+   padding:8px;
    display:flex;
    justify-content:center;
    width:95%;
+   height:30%;
 }
 #boton-batalla-nueva{
    width:95%;
