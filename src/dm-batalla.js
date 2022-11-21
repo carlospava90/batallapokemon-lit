@@ -47,7 +47,7 @@ class DmBatalla  extends LitElement {
     this.url='https://pokeapi.co/api/v2/pokemon/?limit=4&offset=0';
     this.urlpokemon='';
     this.urlpokemon1='';
-    this.urlpokemon2='./src/img/buscarpokemon.png';
+    this.urlpokemon2='./src/img/buscarpokemon.jpg';
     this.dataFilms = [];
     this.siguienteurl='';
     this.anteriorurl='';
@@ -58,7 +58,7 @@ class DmBatalla  extends LitElement {
     this.buttonbatallachecked=true;
     this.buttonnuevabatallachecked=true;
     this.pokemonganadornombre='';
-    this.pokemonganadorurl='./src/img/buscarpokemon.png';
+    this.pokemonganadorurl='./src/img/buscarpokemon.jpg';
     this.contenidoganadores=[];
     this.peleasganadas='';
   }
@@ -112,8 +112,8 @@ _nuevabatalla(){
   this.buttonbatallachecked=true;
   this.nombre1='';
   this.nombre2='';
-  this.urlpokemon1='./src/img/buscarpokemon.png';
-  this.urlpokemon2='./src/img/buscarpokemon.png';
+  this.urlpokemon1='./src/img/buscarpokemon.jpg';
+  this.urlpokemon2='./src/img/buscarpokemon.jpg';
   this.datos=[];
   this.datospokemones=[];
   this._handleApi(this.url).then(response => this._datos(response));
@@ -168,10 +168,12 @@ async _sendDatos(data)  {
   render() {
 
     return html`
-    <h1>Batalla Pokemon</h1>
     <div id="container">
+    <h1>Batalla Pokemon</h1>
+    <div id="container-contenido">
     
       <div id="container-pokemones">
+        <div id="container-listapokemon">
         ${this.dataFilms ? this.datospokemones.map(film => (
               html `
                <listapokemon-front 
@@ -187,7 +189,10 @@ async _sendDatos(data)  {
               ></listapokemon-front>
               `
             )) : ''}
-        <barra-navegadora-front></barra-navegadora-front>
+        </div>
+        <div id="container-barranavegadora">
+          <barra-navegadora-front></barra-navegadora-front>
+        </div>
       </div>
       <div id="container-batallas">
         <div id="container-batallafront">
@@ -211,7 +216,9 @@ async _sendDatos(data)  {
         </div>
       </div>
     </div>
+    </div>
     `;
   }
+  
 }
 window.customElements.define('dm-batalla', DmBatalla);
