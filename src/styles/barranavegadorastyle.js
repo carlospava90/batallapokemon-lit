@@ -4,28 +4,33 @@ export const barranavegadorastyle= css`
 
 #container-nav{
 display:flex;
-justify-content:center;
+}
+#nav-listapokemon{
+	padding:0;
+	margin:5px;
+	display:flex;
+	justify-content:space-around;
+	height:100%;
+	width:100%;
+}
 
+#ul-nav{
+	padding:0;
+	margin:0;
+	list-style:none;
+	display:flex;
+	justify-content:center;
+	
 }
-ul{
-   display: flex;
-		padding: 0;
-		margin: 1em;
-		list-style: none;
-}
+
+	
 a {
-		display: block;
-      border:ridge;
-      border-radius:1em;
-		padding: 1em;
-      margin:1em;
-		/* background-color: #F9B53C; */
+		display: flex;
+	    border:ridge;
+    	border-radius:1em;
+		padding: 10px;
 		text-decoration: none;
 		color: grey;
 	}
-/* nav   {
-   align-items:center;
-   width: 100%;
-} */
 
 `;

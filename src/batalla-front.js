@@ -19,8 +19,8 @@ class BatallaFront  extends LitElement {
     this.buttonbatalladisabled=true;
     this.nombre1= '';
     this.nombre2 = '';
-    this.urlpokemon1='./src/img/buscarpokemon.png';
-    this.urlpokemon2='./src/img/buscarpokemon.png';
+    this.urlpokemon1='./src/img/buscarpokemon.jpg';
+    this.urlpokemon2='./src/img/buscarpokemon.jpg';
   }
 
   render() {
@@ -32,7 +32,7 @@ class BatallaFront  extends LitElement {
                 <img id="img-seleccion-batalla-pokemon1" class="img-seleccion-batalla"  src="${this.urlpokemon1}" alt="pokemon 1">
               </div>
               <div  id="container-p-seleccion-pokemon1">
-                <p id="p-seleccion-pokemon1">${this.nombre1} </p>
+                <p id="p-seleccion-pokemon1">${this.nombre1?this.nombre1:'Nombre'} </p>
               </div>
             </div>
             <div id="seleccion-pokemon-dos" class=" ">
@@ -40,7 +40,7 @@ class BatallaFront  extends LitElement {
                 <img id="img-seleccion-batalla-pokemon2" class="img-seleccion-batalla" src="${this.urlpokemon2}" alt="pokemon 2">
               </div>  
               <div id="container-p-seleccion-pokemon2">
-                <p id="p-seleccion-pokemon2">${this.nombre2} </p>
+                <p id="p-seleccion-pokemon2">${this.nombre2?this.nombre2:'Nombre'} </p>
               </div>
             </div>
         </div>          

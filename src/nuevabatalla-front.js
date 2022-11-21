@@ -15,7 +15,7 @@ class NuevaBatallaFront  extends LitElement {
   constructor(){
     super();
     this.buttonnuevabatalladisabled=true;
-    this.pokemonganadorurl='./src/img/buscarpokemon.png';
+    this.pokemonganadorurl='./src/img/buscarpokemon.jpg';
     this.pokemonganadornombre='';
 
   }
