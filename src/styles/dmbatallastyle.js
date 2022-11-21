@@ -47,4 +47,5 @@ export const dmbatallastyle= css`
     width: 100%;
   }
 }
+
 `;

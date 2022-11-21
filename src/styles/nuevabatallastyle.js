@@ -40,7 +40,6 @@ width:100%;
 #container-p-ganador{
    display:flex;
    align-items:center;
-   /* justify-items:center; */
 }
 #p-ganador{
    text-align:center;
@@ -49,11 +48,9 @@ width:100%;
    padding:1em;
    display:flex;
    justify-content:center;
-   height:20%;
    width:95%;
 }
 #boton-batalla-nueva{
-   
    width:95%;
 }
 `;

@@ -102,9 +102,11 @@ _batallaPokemon(){
 }
 
 _nuevabatalla(){
+  console.log(this.pokemonganadornombre,'a')
   let ganador=this.pokemonganadornombre;
   this.pokemonganadornombre='';
   this.contenidoganadores.push(ganador);
+  console.log(this.pokemonganadornombre,'b')
   this.checkbox1=false;
   this.buttonnuevabatallachecked=true;
   this.buttonbatallachecked=true;
