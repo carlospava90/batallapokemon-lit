@@ -184,6 +184,7 @@ async _sendDatos(data)  {
         <barra-navegadora-front></barra-navegadora-front>
       </div>
       <div id="container-batallas">
+        <div id="container-batallafront">
       ${this.datos!='' ?html`
         <batalla-front 
         nombre1=${this.nombre1}
@@ -193,13 +194,15 @@ async _sendDatos(data)  {
         ?buttonbatalladisabled=${this.buttonbatallachecked}
         >
         </batalla-front>`:html` <batalla-front></batalla-front>`}
-
+        </div>
+        <div id="container-nuevabatallafront">
         ${this.datos!='' ?html`
         <nuevabatalla-front
         pokemonganadorurl=${this.pokemonganadorurl}
         pokemonganadornombre=${this.pokemonganadornombre}
         ?buttonnuevabatalladisabled=${this.buttonnuevabatallachecked}
         ></nuevabatalla-front>`:html` <nuevabatalla-front></nuevabatalla-front>`}
+        </div>
       </div>
     </div>
     `;

@@ -14,18 +14,31 @@ export const dmbatallastyle= css`
   display:flex;
   flex-flow:row wrap;
   justify-content:space-around;
-  border-bottom:1px solid black
+  border-bottom:1px solid black;
+  padding:1em;
  }
 
 #container-pokemones{
-   border:solid; 
-   color:red;
-  width:45%
+   border:1px solid gray;
+   border-radius:1em; 
+   height:100%;
+   /* height:600px; */
+   width:45%
 }
 #container-batallas{
-  border:solid;
-  color:green;
+  display:flex;
+  /* flex-wrap:wrap; */
+  flex-direction:column;
+  /* border:solid; */
+  border-radius:1em; 
+  height:100%;
   width:45%
+}
+#container-batallafront{
+  /* border:solid; */
+}
+#container-nuevabatallafront{
+  /* border:solid; */
 }
 
 `;

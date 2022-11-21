@@ -23,16 +23,17 @@ class NuevaBatallaFront  extends LitElement {
     return html`
       <div id="contenido-seleccion">
         <div id="container-batalla-ganador" class="">
+          <div id="container-titulo">
             <h3>GANADOR</h3>
-              <div id="container-ganador-img-p"> 
-                <div class="">
+          </div>
+          <div id="container-ganador-img-p"> 
+                <div id="container-img-ganador">
                   <img id="img-ganador" src="${this.pokemonganadorurl}" alt="pokemon ganador">
                 </div>
-
                 <div id="container-p-ganador" class="">
-                  <p id="p-ganador">${this.pokemonganadornombre}</p>
+                  <p id="p-ganador">${this.pokemonganadornombre}ganador</p>
                 </div>
-              </div>
+          </div>
         </div>
                     
         <div id="container-boton-batalla-nueva" class=" ">

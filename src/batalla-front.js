@@ -28,12 +28,20 @@ class BatallaFront  extends LitElement {
       <div id="container-pokemones-seleccionados">
         <div id="contenido-pokemones">
             <div id="seleccion-pokemon-uno" class="">
+              <div id="container-img-seleccion-batalla-pokemon1">
                 <img id="img-seleccion-batalla-pokemon1" class="img-seleccion-batalla"  src="${this.urlpokemon1}" alt="pokemon 1">
-                <p id="p-seleccion-pokemon1">${this.nombre1}  </p>
+              </div>
+              <div  id="container-p-seleccion-pokemon1">
+                <p id="p-seleccion-pokemon1">${this.nombre1} </p>
+              </div>
             </div>
             <div id="seleccion-pokemon-dos" class=" ">
+              <div id="container-img-seleccion-batalla-pokemon2">
                 <img id="img-seleccion-batalla-pokemon2" class="img-seleccion-batalla" src="${this.urlpokemon2}" alt="pokemon 2">
+              </div>  
+              <div id="container-p-seleccion-pokemon2">
                 <p id="p-seleccion-pokemon2">${this.nombre2} </p>
+              </div>
             </div>
         </div>          
         <div id="container-boton-batalla" class=" ">   

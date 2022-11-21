@@ -18,7 +18,7 @@ class BarraNavegadoraFront  extends LitElement {
   render() {
     return html`
       <div id="container-nav">
-        <nav >
+        <nav id="nav-listapokemon" >
           <ul id="ul-nav" class="pagination justify-content-center">
               <li id="anterior-pagina" class="page-item " >
                 <a class="page-link" href="#" @click=${this.previousClick}>Previous</a>
