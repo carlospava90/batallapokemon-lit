@@ -7,20 +7,19 @@ class NuevaBatallaFront  extends LitElement {
   }
   static get properties(){
     return{
-    buttondisabled: { type: Boolean },
+    buttonnuevabatalladisabled: { type: Boolean },
     pokemonganadorurl:{type:String},
     pokemonganadornombre:{type:String},
   };
   }
   constructor(){
     super();
-    this.buttondisabled=true;
+    this.buttonnuevabatalladisabled=true;
     this.pokemonganadorurl='./src/img/buscarpokemon.png';
     this.pokemonganadornombre='';
 
   }
   render() {
-    console.log(this.pokemonganadornombre,this.pokemonganadorurl)
     return html`
       <div id="contenido-seleccion">
         <div id="container-batalla-ganador" class="">
@@ -37,7 +36,7 @@ class NuevaBatallaFront  extends LitElement {
         </div>
                     
         <div id="container-boton-batalla-nueva" class=" ">
-          <button id="boton-batalla-nueva" @click=${this.nuevaBatallaPokemonClick} class=" botones-pantalla-derecha" type="button"  ?disabled=${this.buttondisabled}>Nueva Batalla</button>
+          <button id="boton-batalla-nueva" @click=${this.nuevaBatallaPokemonClick} class=" botones-pantalla-derecha" type="button"  ?disabled=${this.buttonnuevabatalladisabled}>Nueva Batalla</button>
         </div>
       </div>
     `;

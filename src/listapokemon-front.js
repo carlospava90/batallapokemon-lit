@@ -10,6 +10,8 @@ class ListaPokemonFront  extends LitElement {
       ataque:{type: String},
       checkboxpokemon:{type:Boolean},
       checked:{type:Boolean},
+      prueba:{type:Object},
+      batallasganadas:{type:String}
     };
   }
   static get styles(){
@@ -23,41 +25,30 @@ class ListaPokemonFront  extends LitElement {
     this.ataque='';
     this.checkboxpokemon=false;
     this.checked=false;
+    this.prueba=[];
+    this.batallasganadas='0';
 
   }
 
   render() {
-    console.log(this.checkboxpokemon)
     return html`
-     
       <div id="listapokemon">
-        <div>
-        <input @click=${this.handleClick} type="checkbox" ?checked=${this.checked} ?disabled=${this.checkboxpokemon}>
-        <img alt="pokemon" src="${this.urlpokemon}">
+        <div id="listapokemoncheckbox">
+          <input id="checkbokpokemon" @click=${this.handleClick} type="checkbox" ?checked=${this.checked} ?disabled=${this.checkboxpokemon}>
+       </div> 
+        <div id="listapokemonimg">
+          <img alt="pokemon" src="${this.urlpokemon}">
         </div>
-        <div>
-          <p>Nombre: ${this.nombre}</p>
-          <p>Poder: ${this.ataque}</p>
-          <p>vida: ${this.vida}</p>
-          <p>batallas ganadas</p>
+        <div id="listapokemoncontenido">
+          <ul>
+            <li><a>Nombre: ${this.nombre}</a></li>
+            <li><a>Poder: ${this.ataque}</a></li>
+            <li><a>vida: ${this.vida}</a></li>
+            <li><a>batallas ganadas: ${this.batallasganadas}</a></li>
+          </ul>
         </div>
-
-      </div>
-      <!-- <div class=" container-nav" id="container-nav">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                <li id="anterior-pagina" class="page-item " >
-                                    <a class="page-link" href="#">Previous</a>
-                                </li>
-                                <li id="home-pagina" class="page-item"><a class="page-link" href="#">Home</a></li>
-                                <li id="siguiente-pagina" class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-       -->
-    `;
+      </div>         
+    `;   
   }
   handleClick(){
     const event=new CustomEvent('pokemon-seleccionado-batalla',{
@@ -68,10 +59,11 @@ class ListaPokemonFront  extends LitElement {
             hp:this.vida,
         },
         bubble:true,
-        composed:true
+        composed:true,
     });
     this.dispatchEvent(event);
   }
+
 }
 
 customElements.define('listapokemon-front', ListaPokemonFront);

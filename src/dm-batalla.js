@@ -1,23 +1,12 @@
 import { LitElement,html,css} from 'lit';
+import { dmbatallastyle } from './styles/dmbatallastyle';
 import {customElement, property} from 'lit/decorators.js';
 
 class DmBatalla  extends LitElement {
   static get styles(){
-    return [css`
-    :host{ 
-      display: flex;
-      flex-direction:row;
-      border:solid;    
-    }
-    #container-pokemones{
-      border:solid;
-      width:50%
-    }
-    #container-batallas{
-      border:solid;
-      width:50%
-    }
-    
+    return [ dmbatallastyle ,css`
+   
+  
     `]
   }
   static get properties(){
@@ -28,6 +17,7 @@ class DmBatalla  extends LitElement {
       nombre2:{type:String},
       vida:{type:String},
       ataque:{type:String},
+      url:{type:String},
       urlpokemon:{type:String},
       urlpokemon1:{type:String},
       urlpokemon2:{type:String},
@@ -39,7 +29,11 @@ class DmBatalla  extends LitElement {
       buttonbatallachecked:{type:Boolean},
       buttonnuevabatallachecked:{type:Boolean},
       pokemonganadornombre:{type:String},
-      pokemonganadorurl:{type:String}
+      pokemonganadorurl:{type:String},
+      siguienteurl:{type:String},
+      anteriorurl:{type:String},
+      contenidoganadores:{type:Array},
+      peleasganadas:{type:String},
     }
   }
   constructor() {
@@ -50,38 +44,49 @@ class DmBatalla  extends LitElement {
     this.nombre2='';
     this.vida='';
     this.ataque='';
+    this.url='https://pokeapi.co/api/v2/pokemon/?limit=4&offset=0';
     this.urlpokemon='';
     this.urlpokemon1='';
     this.urlpokemon2='./src/img/buscarpokemon.png';
     this.dataFilms = [];
+    this.siguienteurl='';
+    this.anteriorurl='';
     this.datos=[];
     this.datospokemones=[];
     this.checkbox1=false;
-    this.checked=false;
+    this.check=false;
     this.buttonbatallachecked=true;
     this.buttonnuevabatallachecked=true;
     this.pokemonganadornombre='';
     this.pokemonganadorurl='./src/img/buscarpokemon.png';
+    this.contenidoganadores=[];
+    this.peleasganadas='';
   }
 firstUpdated(){
-    this._handleApi().then(response => this._datos(response));
+    this._handleApi(this.url).then(response => this._datos(response));
 }
 connectedCallback() {
   super.connectedCallback();
   this.addEventListener('pokemon-seleccionado-batalla', this._handleSearch);
   this.addEventListener('batalla-pokemon', this._batallaPokemon);
   this.addEventListener('nueva-batalla-pokemon', this._nuevabatalla);
-  this._handleApi().then(response => this.dataFilms = [...response.results]);
-  this._datos(this.dataFilms);
+  this.addEventListener('pagina-siguiente', this._next);
+  this.addEventListener('pagina-anterior', this._previous);
+  this.addEventListener('pagina-home', this._home);
+}
+disconnectedCallback(){
+super.disconnectedCallback();
 }
 
 _handleSearch({ detail }) {
+
   const pokemon = JSON.stringify(detail);
   this.datos.push([JSON.parse(pokemon)]);
   this.nombre1=this.datos[0][0].nombre;
   this.urlpokemon1=this.datos[0][0].url;
+  this.datos.length==2?this.checked=false:'';
   this.datos.length==2?(this.buttonbatallachecked=false,this.nombre2=this.datos[1][0].nombre,
-    this.urlpokemon2=this.datos[1][0].url,this.checkbox1=true):'';
+  this.urlpokemon2=this.datos[1][0].url,this.checkbox1=true):'';
 }
 
 _batallaPokemon(){
@@ -96,24 +101,41 @@ _batallaPokemon(){
   (resul<=0&&resul1>0)?(this.pokemonganadornombre=this.datos[1][0].nombre,this.pokemonganadorurl=this.datos[1][0].url):(this.pokemonganadornombre=this.datos[0][0].nombre,this.pokemonganadorurl=this.datos[0][0].url) ;
 }
 
-_nuevabatalla({detail}){
+_nuevabatalla(){
+  this.contenidoganadores.push(this.pokemonganadornombre);
   this.checkbox1=false;
-  this.checked=false;
   this.buttonnuevabatallachecked=true;
-  this.buttonbatallachecked=false;
+  this.buttonbatallachecked=true;
   this.nombre1='';
   this.nombre2='';
   this.urlpokemon1='./src/img/buscarpokemon.png';
   this.urlpokemon2='./src/img/buscarpokemon.png';
   this.datos=[];
-  this._handleApi().then(response => this.dataFilms = [...response.results]);
-  this._datos(this.dataFilms);
+  this.datospokemones=[];
+  this._handleApi(this.url).then(response => this._datos(response));
 }
-async _handleApi() {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=4&offset=0`);
+async _handleApi(url) {
+  const response = await fetch(`${url}`);
   return await response.json();
 }
+ _next(){
+  this.url=this.dataFilms[4];
+  this.datospokemones=[];
+  this._handleApi(this.url).then(response => this._datos(response));
+
+}
+_previous(){
+ this.dataFilms[5]==null?'':this.url=this.dataFilms[5];
+  this.datospokemones=[];
+  this._handleApi(this.url).then(response => this._datos(response));
+}
+_home(){
+  this.url='https://pokeapi.co/api/v2/pokemon/?limit=4&offset=0';
+  this.datospokemones=[];
+  this._handleApi(this.url).then(response => this._datos(response));
+}
 async _datos(data=''){
+  this.dataFilms = [...data.results,data.next,data.previous];
   data.results?
    data.results.forEach(element => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${element.name}?limit=4`)
@@ -124,6 +146,11 @@ async _datos(data=''){
 
 }
 async _sendDatos(data)  {
+  let ganadas=0;
+  this.contenidoganadores.forEach(ganada => {
+    data.name==ganada?ganadas+=1:'';
+  });
+  this.peleasganadas=ganadas;
   this.nombre=data.name;
   this.vida=data.stats[0].base_stat;
   this.ataque=data.stats[1].base_stat;
@@ -131,32 +158,39 @@ async _sendDatos(data)  {
   const jsonFromMap = JSON.stringify(data);
   this.datospokemones.push([JSON.parse(jsonFromMap)]);
 }
- 
+
   render() {
+
     return html`
-    <div id="container-pokemones">
-     ${this.dataFilms ? this.datospokemones.map(film => (
+    <h1>Batalla Pokemon</h1>
+    <div id="container">
+    
+      <div id="container-pokemones">
+        ${this.dataFilms ? this.datospokemones.map(film => (
               html `
                <listapokemon-front 
                nombre=${film[0].name} 
                ataque=${film[0].stats[1].base_stat} 
                vida=${film[0].stats[0].base_stat} 
                urlpokemon=${film[0].sprites.front_default}
+               ?checked=${this.check}
                ?checkboxpokemon=${this.checkbox1}
-               ?checked=${this.checked}
+               batallasganadas=${this.peleasganadas}
+               .prueba=${this.datospokemones}
+              
               ></listapokemon-front>
               `
             )) : ''}
+        <barra-navegadora-front></barra-navegadora-front>
       </div>
       <div id="container-batallas">
-     
       ${this.datos!='' ?html`
         <batalla-front 
         nombre1=${this.nombre1}
         nombre2=${this.nombre2}
         urlpokemon1=${this.urlpokemon1} 
         urlpokemon2=${this.urlpokemon2}
-        ?buttondisabled=${this.buttonbatallachecked}
+        ?buttonbatalladisabled=${this.buttonbatallachecked}
         >
         </batalla-front>`:html` <batalla-front></batalla-front>`}
 
@@ -164,9 +198,10 @@ async _sendDatos(data)  {
         <nuevabatalla-front
         pokemonganadorurl=${this.pokemonganadorurl}
         pokemonganadornombre=${this.pokemonganadornombre}
-        ?buttondisabled=${this.buttonnuevabatallachecked}
+        ?buttonnuevabatalladisabled=${this.buttonnuevabatallachecked}
         ></nuevabatalla-front>`:html` <nuevabatalla-front></nuevabatalla-front>`}
       </div>
+    </div>
     `;
   }
 }

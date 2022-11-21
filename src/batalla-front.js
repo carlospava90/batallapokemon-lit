@@ -3,7 +3,7 @@ import { batallastyles } from './styles/batallastyle';
 
 class BatallaFront  extends LitElement {
   static get styles(){
-    return [ batallastyles , css``]
+    return [batallastyles, css``]
   }
   static get properties() {
     return {
@@ -11,17 +11,18 @@ class BatallaFront  extends LitElement {
       nombre2: { type: String },
       urlpokemon1:{ type: String},
       urlpokemon2:{type: String},
-      buttondisabled:{type:Boolean}
+      buttonbatalladisabled:{type:Boolean}
     };
   }
   constructor(){
     super();
-    this.buttondisabled=true;
+    this.buttonbatalladisabled=true;
     this.nombre1= '';
     this.nombre2 = '';
     this.urlpokemon1='./src/img/buscarpokemon.png';
     this.urlpokemon2='./src/img/buscarpokemon.png';
   }
+
   render() {
     return html`
       <div id="container-pokemones-seleccionados">
@@ -30,15 +31,14 @@ class BatallaFront  extends LitElement {
                 <img id="img-seleccion-batalla-pokemon1" class="img-seleccion-batalla"  src="${this.urlpokemon1}" alt="pokemon 1">
                 <p id="p-seleccion-pokemon1">${this.nombre1}  </p>
             </div>
-
             <div id="seleccion-pokemon-dos" class=" ">
                 <img id="img-seleccion-batalla-pokemon2" class="img-seleccion-batalla" src="${this.urlpokemon2}" alt="pokemon 2">
                 <p id="p-seleccion-pokemon2">${this.nombre2} </p>
             </div>
         </div>          
-            <div id="container-boton-batalla" class=" ">   
-              <button id="boton-batalla-empezar" @click=${this. batallaPokemonClick} class="botones-pantalla-derecha" ?disabled=${this.buttondisabled} >Batalla</button>
-            </div>
+        <div id="container-boton-batalla" class=" ">   
+              <button id="boton-batalla-empezar" @click=${this. batallaPokemonClick} class="botones-pantalla-derecha" ?disabled=${this.buttonbatalladisabled} >Batalla</button>
+        </div>
       </div>
     `;
   }
