@@ -31,6 +31,7 @@ class ListaPokemonFront  extends LitElement {
   }
 
   render() {
+    console.log(this.prueba)
     return html`
       <div id="listapokemon">
         <div id="listapokemoncheckbox">
@@ -47,7 +48,9 @@ class ListaPokemonFront  extends LitElement {
             <li><a>batallas ganadas: ${this.batallasganadas}</a></li>
           </ul>
         </div>
-      </div>         
+      </div>  
+
+                
     `;   
   }
   handleClick(){
