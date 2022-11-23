@@ -163,6 +163,7 @@ async _sendDatos(data)  {
   this.urlpokemon=data.sprites.front_default;
   const jsonFromMap = JSON.stringify(data);
   this.datospokemones.push([JSON.parse(jsonFromMap)]);
+
 }
 
   render() {
